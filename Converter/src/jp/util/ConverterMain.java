@@ -1,6 +1,7 @@
 package jp.util;
 
 import java.util.Base64;
+import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
 import java.util.Optional;
 
@@ -8,10 +9,10 @@ public class ConverterMain {
 
 
 	/**
-	 * BASE64でエンコードした文字列を返す。
+	 * BASE64でエンコードしたテキストを返す。
 	 * nullの場合はnullを返す。
-	 * @param src 変換前テキスト文字列
-	 * @return BASE64変換後文字列
+	 * @param src プレーンテキスト
+	 * @return BASE64変換後テキスト
 	 */
 	public static Optional<String> Encode(String src) {
 		if(src == null) {
@@ -21,4 +22,20 @@ public class ConverterMain {
 
 		return Optional.ofNullable(encoder.encodeToString(src.getBytes()));
 	}
+
+	/**
+	 * BASE64でデコードしたテキストを返す。
+	 * nullの場合はnullを返す。
+	 * @param dest BASE64変換後テキスト
+	 * @return プレーンテキスト
+	 */
+	public static Optional<String> Decode(String dest) {
+		if(dest == null) {
+			return null;
+		}
+		Decoder decoder = Base64.getDecoder();
+
+		return Optional.ofNullable(new String(decoder.decode(dest)));
+	}
+
 }

@@ -20,10 +20,16 @@ class ConvertMainTest1 {
 		assertEquals(null,result);
 	}
 
-	@Test
+	//@Test
 	void testEncode1M() {
 		byte[] data = new byte[1000000];
 		Optional<String> result = ConverterMain.Encode(data.toString());
 		assertEquals("YWJjZGVmZw==",result.get());
+	}
+
+	@Test
+	void testDecode正常系() {
+		Optional<String> result = ConverterMain.Decode("YWJjZGVmZw==");
+		assertEquals("abcdefg",result.get());
 	}
 }
